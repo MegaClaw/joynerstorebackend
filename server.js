@@ -11,19 +11,10 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin) return callback(null, true);
-    const allowed = origin.replace(/\/$/, '');
-    if (
-      allowed === (process.env.CLIENT_URL || '').replace(/\/$/, '') ||
-      allowed.endsWith('.vercel.app')
-    ) {
-      return callback(null, true);
-    }
-    callback(new Error('Not allowed by CORS'));
-  },
+  origin: true,
   credentials: true,
 }));
+
 app.use(express.json());
 
 // Routes
